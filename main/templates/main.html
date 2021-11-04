@@ -2,12 +2,13 @@
 {% load static %}
 
 {% block title %}
-title
+home :)
 {% endblock %}
 
 {% block styles %}
 {% endblock %}
 
 {% block body %}
-<h1>hello!</h1>
+<h1>hello, {{ user.username }}!</h1>
+<a href="/logout"><button>Logout</button></a>
 {% endblock %}
