@@ -1,14 +1,21 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} 
 
-{% block title %}
-home :)
-{% endblock %}
-
-{% block styles %}
-{% endblock %}
+{% block title %} home :) {% endblock %} 
+{% block styles %} {% endblock %} 
 
 {% block body %}
 <h1>hello, {{ user.username }}!</h1>
 <a href="/logout"><button>Logout</button></a>
+
+<div>
+  {% for tweet in tweets %}
+  <div class="tweet-card">
+    <p>
+      <strong>{{ tweet.author.username }}</strong> |
+      <i>{{ tweet.created_at }}</i>
+    </p>
+    <p>{{ tweet.body }}</p>
+  </div>
+  {% endfor %}
+</div>
 {% endblock %}
