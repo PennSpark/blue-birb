@@ -23,8 +23,17 @@
       <i>{{ tweet.created_at }}</i>
     </p>
     <p>{{ tweet.body }}</p>
+    <p><a href="/like?id={{tweet.id}}">
+      {% if request.user in tweet.likes.all %}
+        unlike
+      {% else %}
+        like
+      {% endif %}
+    </a> ({{ tweet.likes.count }} &hearts;)</p>
+    <p>      
+    </p>
     {% if tweet.author == user %}
-      <a href="delete?id={{tweet.id}}">delete tweet</a>
+      <p><a href="delete?id={{tweet.id}}">delete tweet</a></p>
     {% endif %}
   </div>
   {% endfor %}

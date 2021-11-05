@@ -29,6 +29,21 @@ def delete_view(request):
         tweet.delete()
     return redirect('/')
 
+# like a tweet
+def like_tweet(request):
+    tweet = Tweet.objects.get(id=request.GET['id'])
+
+    # not yet liked
+    if len(tweet.likes.filter(username=request.user.username)) == 0:
+        tweet.likes.add(request.user)
+    
+    # liked
+    else:
+        tweet.likes.remove(request.user)
+
+    tweet.save()
+    return redirect('/')
+
 
 '''USER LOGIN/REGISTRATION/LOGOUT'''
 

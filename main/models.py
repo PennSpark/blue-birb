@@ -7,5 +7,7 @@ class Tweet(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField()
 
+    likes = models.ManyToManyField(User, related_name='likes', blank=True)
+
     def __str__(self):
         return self.body
