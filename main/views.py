@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from main.models import Tweet
 from datetime import datetime
 
+'''TEMPLATE RENDERING'''
 def main_view(request):
     if request.method == 'POST' and request.POST['body'] != "":
         tweet = Tweet.objects.create(
@@ -18,6 +19,18 @@ def main_view(request):
 
 def splash_view(request):
     return render(request, 'splash.html' )
+
+
+'''ACTIONS'''
+# delete a tweet routing
+def delete_view(request):
+    tweet = Tweet.objects.get(id=request.GET['id'])
+    if tweet.author == request.user:
+        tweet.delete()
+    return redirect('/')
+
+
+'''USER LOGIN/REGISTRATION/LOGOUT'''
 
 # login
 def login_view(request):

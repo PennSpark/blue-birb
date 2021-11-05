@@ -23,6 +23,9 @@
       <i>{{ tweet.created_at }}</i>
     </p>
     <p>{{ tweet.body }}</p>
+    {% if tweet.author == user %}
+      <a href="delete?id={{tweet.id}}">delete tweet</a>
+    {% endif %}
   </div>
   {% endfor %}
 </div>
