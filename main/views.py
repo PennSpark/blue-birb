@@ -6,6 +6,9 @@ from datetime import datetime
 
 '''TEMPLATE RENDERING'''
 def main_view(request):
+    if not request.user.is_authenticated:
+         return redirect('/splash/')
+
     if request.method == 'POST' and request.POST['body'] != "":
         tweet = Tweet.objects.create(
             body = request.POST['body'],
